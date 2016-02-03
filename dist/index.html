@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <script src="bow/angular/angular.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="all.min.js"></script>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <title>indeed api test</title>
+</head>
+<body ng-controller="indexCtrl">
+  <header role="search-box">
+    <input type="text" ng-model="stringdata.jTitle" placeholder="Job Title">
+    <input type="number" min="10000" max="99999" ng-model="stringdata.jLocation" placeholder="Zip Code">
+    <button type="button">Search Now</button>
+  </header>
+
+  <section role="results">
+    <div class="result" ng-repeat="x in xml">
+      
+    </div>
+  </section>
+
+  <footer role="attribution">
+    <span id=indeed_at>
+      <a href="http://www.indeed.com/">jobs</a> by <a
+href="http://www.indeed.com/" title="Job Search"><img
+src="http://www.indeed.com/p/jobsearch.gif" style="border: 0;
+vertical-align: middle;" alt="Indeed job search"></a>
+    </span>
+  </footer>
+</body>
+</html>

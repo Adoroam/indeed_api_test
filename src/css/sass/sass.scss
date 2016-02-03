@@ -1,0 +1,108 @@
+$font-stack: Helvetica, sans-serif;
+
+$dark: #272822;
+$light: #8f908a;
+$yellow: #e6db74;
+$pink: #f92672;
+$blue: #66d9ef;
+$white: #f8f8f2;
+$purple: #ae81ff;
+$orange: #fd971f;
+$green: #a6e22e;
+.dark {color:$dark;}
+.light {color:$light;}
+.yellow {color:$yellow;}
+.pink {color:$pink;}
+.blue {color:$blue;}
+.white {color:$white;}
+.purple {color:$purple;}
+.orange {color:$orange;}
+.green {color:$green;}
+
+html {
+    padding: 0em;
+    margin: 0em;
+    font-family: $font-stack;
+}
+body {
+    box-sizing: border-box;
+    height:100%;
+    padding: 0em;
+    margin: 0em;
+}
+a {
+    color: $white;
+    text-decoration: none;
+    box-sizing: border-box;
+    &:hover {
+        animation: links 1s;
+        animation-fill-mode: forwards; 
+    }
+}
+header, section, footer {
+    box-sizing: border-box;
+    width: 100%;
+    margin: auto;
+    padding: 1em;
+    color: $white;
+    background-color: $dark;
+}
+header {
+    padding-top: 2em;
+}
+section {
+    
+}
+
+footer {
+    margin-bottom: 0em;
+}
+h1, h2, h3, h4, h5 {
+    margin: 0em;
+    padding: 0em;
+    color: $blue;
+    font-weight: 200;
+}
+em { 
+    font-style: normal;
+    color: $purple;
+    border-bottom: 2px dotted $orange;
+}
+input[type="number"]::-webkit-inner-spin-button, 
+input[type="number"]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input[type="number"] {
+    text-align: center;
+}
+input, button {
+    padding: 0.3em;
+    background-color: $dark;
+    color: $white;
+    border: 1px solid $pink;
+}
+.center {text-align: center;}
+.ital {font-style: italic;}
+
+@media only screen and (max-width: 720px) {
+    section {
+        display:block;
+    }
+}
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@keyframes links {
+    0% {color: $white;}
+    100% {color: $pink;border-bottom: 2px dotted $yellow;}
+}
+@keyframes focus {
+    0% {background-color: rgba(200, 200, 200, 0);}
+    50% {background-color: rgba(200, 200, 200, 0.1); }
+    100% {background-color: rgba(200, 200, 200, 0); }
+}
