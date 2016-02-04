@@ -1,4 +1,5 @@
 var http = require('http');
+//var url = require('url');
 var express = require('express')
   , cors = require('cors')
   , app = express();
@@ -105,6 +106,8 @@ app.get('/', function(req, res) {
 });
 
 app.get('/data', function(req, res) {
+    //var parsed = url.parse(req.url);
+    //console.log(parsed);
     if (req.cookies['request']) {
         var reqcookie = req.cookies['request'];
         var requrl = reqcookie.requeststring;

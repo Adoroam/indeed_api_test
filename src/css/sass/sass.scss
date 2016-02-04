@@ -50,8 +50,39 @@ header, section, footer {
 header {
     padding-top: 2em;
 }
-section {
-    
+
+section[role="results"] {
+    .result {
+        padding:1em;
+        margin:1em 0;
+        border: 1px solid $yellow;
+        h1{
+            color:$blue;
+        }
+        h2 {
+            font-size: 1.2em;
+            color: $green;
+        }
+        .result-footer {
+            font-size: 0.8em;
+            color: $light;
+        }
+    }
+}
+section[role="page-controls"] {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    p {
+        margin: auto 0;
+        text-align: center;
+    }
+    [role="prev"] {
+        
+    }
+    [role="next"] {
+        float: right;
+    }
 }
 
 footer {

@@ -55,6 +55,29 @@ header, section, footer {
 header {
   padding-top: 2em; }
 
+section[role="results"] .result {
+  padding: 1em;
+  margin: 1em 0;
+  border: 1px solid #e6db74; }
+  section[role="results"] .result h1 {
+    color: #66d9ef; }
+  section[role="results"] .result h2 {
+    font-size: 1.2em;
+    color: #a6e22e; }
+  section[role="results"] .result .result-footer {
+    font-size: 0.8em;
+    color: #8f908a; }
+
+section[role="page-controls"] {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; }
+  section[role="page-controls"] p {
+    margin: auto 0;
+    text-align: center; }
+  section[role="page-controls"] [role="next"] {
+    float: right; }
+
 footer {
   margin-bottom: 0em; }
 

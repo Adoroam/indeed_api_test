@@ -3,6 +3,7 @@
 <head>
   <script src="bow/angular/angular.js"></script>
   <script src="bow/angular-cookies/angular-cookies.js"></script>
+  <script type="text/javascript" src="http://gdc.indeed.com/ads/apiresults.js"></script>
   <link rel="stylesheet" href="style.css">
   <script src="all.min.js"></script>
   <meta name="viewport" content="width=device-width, user-scalable=no">
@@ -17,18 +18,33 @@
         <input type="number" min="10000" max="99999" 
         ng-model="formdata.jLocation" 
         name="jLocation" placeholder="Zip Code">
+        <input type="number" 
+        ng-model="formdata.startNo" name="startNo" ng-show="false">
         <button type="submit">Search Now</button>
     </header>
 
     <section role="results">
-      <div class="result" ng-repeat="x in xml">
-        {{x}}
-      </div>
-      <div role="page-controls">
-        <input type="hidden" name="start" ng-model="formdata.startNo"><!--
-        <button type="submit" role="prev" ng-if="!formdata.startNo">prev</button>
-        <button type="submit" role="next" >next</button> -->
-      </div>
+      <a  ng-mousedown="x.onmousedown[0]" href="{{x.url[0]}}" ng-repeat="x in xml.result">
+        <div class="result" >
+          <h1>{{x.jobtitle[0]}}</h1>
+          <h2>{{x.company[0]}} - {{x.formattedLocationFull[0]}}</h2>
+          <p>{{x.snippet[0]}}</p>
+          <div id="{{x.jobkey[0]}}"></div>
+          <div class="result-footer">
+            <p>via {{x.source[0]}} | posted {{x.date[0] }}</p>
+          </div>
+        </div>
+       </a>
+    </section>
+
+    <section role="page-controls" ng-if="xml">
+      <button 
+          type="submit" role="prev" 
+          ng-click="controls20('prev')" 
+          ng-show="formdata.startNo > 1">prev 20</button>
+      <p>listings {{formdata.startNo}} - {{ formdata.startNo + 19}}</p>
+      <button type="submit" role="next" 
+          ng-click="controls20('next')">next 20</button>
     </section>
 
   </form>
@@ -40,5 +56,27 @@ src="http://www.indeed.com/p/jobsearch.gif" style="border: 0;
 vertical-align: middle;" alt="Indeed job search"></a>
     </span>
   </footer>
+      <!-- <dl>
+        <dd >jobtitle: {{x.jobtitle[0]}}</dd>
+        <dd>company: {{x.company[0]}}</dd>
+        <dd>city: {{x.city[0]}}</dd>
+        <dd>state: {{x.state[0]}}</dd>
+        <dd>country: {{x.country[0]}}</dd>
+        <dd>formattedLocation: {{x.formattedLocation[0]}}</dd>
+        <dd>source: {{x.source[0]}}</dd>
+        <dd>date: {{x.date[0]}}</dd>
+        <dd>snippet: {{x.snippet[0]}}</dd>
+        <dd>url: <a href="{{x.url[0]}}">{{x.url[0]}}</a></dd>
+        <dd>onmousedown: {{x.onmousedown[0]}}</dd>
+        <dd>latitude: {{x.latitude[0]}}</dd>
+        <dd>longitude: {{x.longitude[0]}}</dd>
+        <dd>jobkey: {{x.jobkey[0]}}</dd>
+        <dd>sponsored: {{x.sponsored[0]}}</dd>
+        <dd>expired: {{x.expired[0]}}</dd>
+        <dd>indeedApply: {{x.indeedApply[0]}}</dd>
+        <dd>formattedLocationFull: {{x.formattedLocationFull[0]}}</dd>
+        <dd>formattedRelativeTime: {{x.formattedRelativeTime[0]}}</dd>
+        <dd>noUniqueUrl: {{x.noUniqueUrl[0]}}</dd>
+      </dl> -->
 </body>
 </html>
