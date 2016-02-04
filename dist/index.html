@@ -2,24 +2,36 @@
 <html ng-app="app">
 <head>
   <script src="bow/angular/angular.js"></script>
+  <script src="bow/angular-cookies/angular-cookies.js"></script>
   <link rel="stylesheet" href="style.css">
   <script src="all.min.js"></script>
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <title>indeed api test</title>
 </head>
 <body ng-controller="indexCtrl">
-  <header role="search-box">
-    <input type="text" ng-model="stringdata.jTitle" placeholder="Job Title">
-    <input type="number" min="10000" max="99999" ng-model="stringdata.jLocation" placeholder="Zip Code">
-    <button type="button">Search Now</button>
-  </header>
+  <form action="/" method="POST">
+    <header role="search-box">
+        <input type="text" 
+        ng-model="formdata.jTitle" 
+        name="jTitle" placeholder="Job Title">
+        <input type="number" min="10000" max="99999" 
+        ng-model="formdata.jLocation" 
+        name="jLocation" placeholder="Zip Code">
+        <button type="submit">Search Now</button>
+    </header>
 
-  <section role="results">
-    <div class="result" ng-repeat="x in xml">
-      
-    </div>
-  </section>
+    <section role="results">
+      <div class="result" ng-repeat="x in xml">
+        {{x}}
+      </div>
+      <div role="page-controls">
+        <input type="hidden" name="start" ng-model="formdata.startNo"><!--
+        <button type="submit" role="prev" ng-if="!formdata.startNo">prev</button>
+        <button type="submit" role="next" >next</button> -->
+      </div>
+    </section>
 
+  </form>
   <footer role="attribution">
     <span id=indeed_at>
       <a href="http://www.indeed.com/">jobs</a> by <a

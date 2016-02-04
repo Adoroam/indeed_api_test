@@ -1,40 +1,61 @@
-var app = angular.module('app',[]);
+var app = angular.module('app',['ngCookies']);
 
-app.controller('indexCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+app.controller('indexCtrl', ['$scope', '$http', '$cookies', 'ind', function($scope, $http, $cookies, ind) {
    $scope.xml = '';
-   $scope.stringdata = {
-        publisher: 2878037053725137,
+   $scope.formdata = {
         jTitle: 'java',
         jLocation: 78726,
-        userip: '10.10.10.10',
-        chnl: "FJR",
-        useragent: "Mozilla/%2F4.0%28Firefox%29"
+        startNo: 0
    };
-    $scope.createString = function () {
-            return "http://api.indeed.com/ads/apisearch?publisher="+
-                $scope.stringdata.publisher+
-                "&q="+encodeURI($scope.stringdata.jTitle)+
-                "&l="+encodeURI($scope.stringdata.jLocation)+
-                "&sort=&radius=&st=&jt=&start=&limit=20&fromage=&filter=&latlong=1&co=us&"+
-                "chnl="+$scope.stringdata.chnl+
-                "&userip="+$scope.stringdata.userip+
-                "&useragent="+encodeURI($scope.stringdata.useragent)+"&v=2";
-    };
+   function getxml() {
+        $http.get('/xml')
+            .then(function(response) {
+                return response;
+            });
+   };
+   if ($cookies.get('request')) {
+        ind.get().then(function(d) {
+            if (d.data) {
+                $scope.xml = d.data;
+                console.log($scope.xml);
+            }   else {console.log("nodata");}
+        });
+   };
 
-    console.log($scope.createString());
+   //console.log($scope.xml);
+   //ind;
 
-    $scope.serv = {
+    /*$scope.serv = {
             get: function() {
                     var promise = $http.get($scope.createString()).success(function(response) {
                                 return response;
                             });
                         return promise;
                     }
-    };
+    };*/
 
 
-    $scope.serv.get().then(function(d) {
+    /*$scope.serv.get().then(function(d) {
         $scope.xml = d.data;  
-    });
+    });*/
 
 }]);
+
+/*app.factory('ind', function() {
+   
+   //console.log(str);
+});*/
+app.factory('ind', function($http) {
+    var promise;
+    var jsondata = {
+        get: function() {
+            if (!promise) {
+                var promise = $http.get('/data').success(function(response) {
+                    return response;
+                });
+                return promise;
+            }
+        }
+    };
+    return jsondata;
+});

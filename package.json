@@ -11,6 +11,7 @@
   "dependencies": {
     "body-parser": "^1.14.2",
     "bower": "^1.7.2",
+    "cookie-parser": "^1.4.1",
     "cors": "^2.7.1",
     "express": "^4.13.3",
     "fs": "0.0.2",
@@ -19,6 +20,7 @@
     "gulp-express": "^0.3.5",
     "gulp-sass": "^2.1.1",
     "gulp-uglify": "^1.5.1",
-    "mongoose": "^4.4.0"
+    "mongoose": "^4.4.0",
+    "xml2js": "^0.4.16"
   }
 }
