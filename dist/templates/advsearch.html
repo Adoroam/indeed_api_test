@@ -1,0 +1,126 @@
+<!-- ADVANCED SEARCH -->
+<div role="adv-search" ng-if="adv.tog">
+  <table>
+    <tr>
+      <th>Job Posting Date</th>
+      <th>Job Type</th>
+      <th>Search Radius</th>
+    </tr>
+    <tr>
+      <td><input type="radio" 
+          name="date" id="date3"
+          ng-click="update()" 
+          ng-model="queryinfo.date" 
+          value="3" ng-hide="true">
+        <label for="date3">3 Days Ago</label></td>
+      <td><input type="radio" 
+          name="jobtype" id="jobtypefulltime"
+          ng-click="update()" 
+          ng-model="queryinfo.jobtype" 
+          value="fulltime" ng-hide="true">
+        <label for="jobtypefulltime">Full Time</label></td>
+      <td><input type="radio" 
+          name="radius" id="radius5"
+          ng-click="update()" 
+          ng-model="queryinfo.radius" 
+          value="5" ng-hide="true">
+        <label for="radius5">5 Miles</label></td>
+    </tr>
+    <tr>
+      <td><input type="radio" 
+          name="date" id="date5"
+          ng-click="update()" 
+          ng-model="queryinfo.date" 
+          value="5" ng-hide="true">
+        <label for="date5">5 Days Ago</label></td>
+      <td><input type="radio" 
+          name="jobtype" id="jobtypeparttime"
+          ng-click="update()" 
+          ng-model="queryinfo.jobtype" 
+          value="parttime" ng-hide="true">
+        <label for="jobtypeparttime">Part Time</label></td>
+      <td><input type="radio" 
+          name="radius" id="radius10"
+          ng-click="update()" 
+          ng-model="queryinfo.radius" 
+          value="10" ng-hide="true">
+        <label for="radius10">10 Miles</label></td>
+    </tr>
+    <tr>
+      <td><input type="radio" 
+          name="date" id="date7"
+          ng-click="update()" 
+          ng-model="queryinfo.date" 
+          value="7" ng-hide="true">
+        <label for="date7">7 Days Ago</a></label></td>
+      <td><input type="radio" 
+          name="jobtype" id="jobtypecontract"
+          ng-click="update()" 
+          ng-model="queryinfo.jobtype" 
+          value="contract" ng-hide="true">
+        <label for="jobtypecontract">Contract</label></td>
+      <td><input type="radio" 
+          name="radius" id="radius15"
+          ng-click="update()" 
+          ng-model="queryinfo.radius" 
+          value="15" ng-hide="true">
+        <label for="radius15">15 Miles</label></td>
+    </tr>
+    <tr>
+      <td><input type="radio" 
+          name="date" id="date10"
+          ng-click="update()" 
+          ng-model="queryinfo.date" 
+          value="10" ng-hide="true">
+        <label for="date10">10 Days Ago</label></td>
+      <td><input type="radio" 
+          name="jobtype" id="jobtypeinternship"
+          ng-click="update()" 
+          ng-model="queryinfo.jobtype" 
+          value="internship" ng-hide="true">
+        <label for="jobtypeinternship">Internship</label></td>
+      <td><input type="radio" 
+          name="radius" id="radius25"
+          ng-click="update()" 
+          ng-model="queryinfo.radius" 
+          value="25" ng-hide="true">
+        <label for="radius25">25 Miles</label></td>
+    </tr>
+    <tr>
+      <td><input type="radio" 
+          name="date" id="date14"
+          ng-click="update()" 
+          ng-model="queryinfo.date" 
+          value="14" ng-hide="true">
+        <label for="date14">14 Days Ago</label></td>
+      <td><input type="radio" 
+          name="jobtype" id="jobtypetemporary"
+          ng-click="update()" 
+          ng-model="queryinfo.jobtype" 
+          value="temporary" ng-hide="true">
+        <label for="jobtypetemporary">Temporary</label></td>
+      <td><input type="radio" 
+          name="radius" id="radius50"
+          ng-click="update()" 
+          ng-model="queryinfo.radius" 
+          value="50" ng-hide="true">
+        <label for="radius50">50 Miles</label></td>
+    </tr>
+    <tr>
+      <td>
+        <input type="radio" 
+          name="date" id="dateany"
+          ng-click="update()" 
+          ng-model="queryinfo.date" 
+          value="any" ng-hide="true">
+        <label for="dateany">Any Time</label></td>
+      <td><input type="radio" 
+          name="jobtype" id="jobtypeany"
+          ng-click="update()" 
+          ng-model="queryinfo.jobtype" 
+          value="any" ng-hide="true">
+        <label for="jobtypeany">Any Type</label></td>
+      <td></td>
+    </tr>
+  </table>
+</div>

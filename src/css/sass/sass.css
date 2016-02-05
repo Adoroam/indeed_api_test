@@ -25,22 +25,40 @@
 .green {
   color: #a6e22e; }
 
+.bg-dark {
+  background-color: #272822; }
+
+.bg-light {
+  background-color: #8f908a; }
+
 html {
   padding: 0em;
   margin: 0em;
-  font-family: Helvetica, sans-serif; }
+  font-family: Helvetica, sans-serif;
+  height: 100%; }
 
 body {
   box-sizing: border-box;
-  height: 100%;
   padding: 0em;
-  margin: 0em; }
+  margin: 0em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #272822; }
 
 a {
   color: #f8f8f2;
   text-decoration: none;
   box-sizing: border-box; }
-  a:hover {
+
+input[type="radio"]:checked + label {
+  color: #66d9ef; }
+
+label {
+  color: #f8f8f2;
+  text-decoration: none;
+  box-sizing: border-box; }
+  label:hover {
     animation: links 1s;
     animation-fill-mode: forwards; }
 
@@ -52,15 +70,30 @@ header, section, footer {
   color: #f8f8f2;
   background-color: #272822; }
 
-header {
-  padding-top: 2em; }
+header[role="search-box"] {
+  padding: 1em; }
+
+div[role="adv-search"] {
+  margin-top: 1em;
+  font-size: 0.8em; }
+  div[role="adv-search"] table {
+    text-align: right; }
+    div[role="adv-search"] table tr th {
+      width: 9em;
+      color: #a6e22e; }
 
 section[role="results"] .result {
   padding: 1em;
   margin: 1em 0;
   border: 1px solid #e6db74; }
+  section[role="results"] .result:hover {
+    animation: focus 4s;
+    animation-fill-mode: forwards; }
   section[role="results"] .result h1 {
     color: #66d9ef; }
+    section[role="results"] .result h1:hover {
+      animation: heading 4s;
+      animation-fill-mode: forwards; }
   section[role="results"] .result h2 {
     font-size: 1.2em;
     color: #a6e22e; }
@@ -79,10 +112,11 @@ section[role="page-controls"] {
     float: right; }
 
 footer {
-  margin-bottom: 0em; }
+  margin-bottom: 0em;
+  padding: 1em; }
 
 h1, h2, h3, h4, h5 {
-  margin: 0em;
+  margin: 0.3em;
   padding: 0em;
   color: #66d9ef;
   font-weight: 200; }
@@ -120,8 +154,20 @@ input, button {
   0% {
     color: #f8f8f2; }
   100% {
-    color: #f92672;
+    color: #ae81ff;
     border-bottom: 2px dotted #e6db74; } }
+
+@keyframes heading {
+  0% {
+    color: #66d9ef; }
+  25% {
+    color: #ae81ff; }
+  50% {
+    color: #f92672; }
+  75% {
+    color: #e6db74; }
+  100% {
+    color: #a6e22e; } }
 
 @keyframes focus {
   0% {

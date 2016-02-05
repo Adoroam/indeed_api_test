@@ -1,0 +1,11 @@
+<!-- PAGE CONTROLS -->
+<section role="page-controls" ng-if="xml">
+  <button type="button" role="prev" 
+  ng-click="controls('prev') " 
+  ng-hide="controls('hide')">prev {{queryinfo.limit}}</button>
+  <p>listings {{queryinfo.start}} - {{ controls('end') }} 
+  <span ng-if="xml.result.length">({{xmltotal}} available)</span></p>
+  <button type="button" role="next" 
+  ng-click="controls('next')" 
+  ng-show="controls('show')">next {{queryinfo.limit}}</button>
+</section>

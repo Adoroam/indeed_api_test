@@ -18,19 +18,36 @@ $green: #a6e22e;
 .purple {color:$purple;}
 .orange {color:$orange;}
 .green {color:$green;}
-
+.bg-dark {background-color:$dark;}
+.bg-light {background-color:$light;}
 html {
     padding: 0em;
     margin: 0em;
     font-family: $font-stack;
+    height:100%;
 }
 body {
     box-sizing: border-box;
-    height:100%;
+    
     padding: 0em;
     margin: 0em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: $dark;
 }
 a {
+    color: $white;
+    text-decoration: none;
+    box-sizing: border-box;
+    &:hover {
+        
+    }
+}
+input[type="radio"]:checked+label {
+    color: $blue;
+}
+label {
     color: $white;
     text-decoration: none;
     box-sizing: border-box;
@@ -38,6 +55,8 @@ a {
         animation: links 1s;
         animation-fill-mode: forwards; 
     }
+}
+form {
 }
 header, section, footer {
     box-sizing: border-box;
@@ -47,17 +66,37 @@ header, section, footer {
     color: $white;
     background-color: $dark;
 }
-header {
-    padding-top: 2em;
+header[role="search-box"] {
+    padding: 1em;
 }
-
+div[role="adv-search"] {
+    margin-top: 1em;
+    font-size: 0.8em;
+    table {
+        text-align: right;
+        tr th {
+            width: 9em;
+            color: $green;
+        }
+        tr td {
+        }
+    }
+}
 section[role="results"] {
     .result {
         padding:1em;
         margin:1em 0;
         border: 1px solid $yellow;
+        &:hover {
+            animation: focus 4s;
+            animation-fill-mode: forwards; 
+        }
         h1{
             color:$blue;
+            &:hover {
+                animation: heading 4s;
+                animation-fill-mode: forwards; 
+            }
         }
         h2 {
             font-size: 1.2em;
@@ -87,9 +126,10 @@ section[role="page-controls"] {
 
 footer {
     margin-bottom: 0em;
+    padding:1em;
 }
 h1, h2, h3, h4, h5 {
-    margin: 0em;
+    margin: 0.3em;
     padding: 0em;
     color: $blue;
     font-weight: 200;
@@ -130,10 +170,17 @@ input, button {
 
 @keyframes links {
     0% {color: $white;}
-    100% {color: $pink;border-bottom: 2px dotted $yellow;}
+    100% {color: $purple;border-bottom: 2px dotted $yellow;}
+}
+@keyframes heading {
+    0% {color: $blue;}
+    25% {color: $purple;}
+    50% {color: $pink;}
+    75% {color: $yellow;}
+    100% {color: $green;}
 }
 @keyframes focus {
-    0% {background-color: rgba(200, 200, 200, 0);}
+    0% {background-color: rgba(200, 200, 200, 0); }
     50% {background-color: rgba(200, 200, 200, 0.1); }
     100% {background-color: rgba(200, 200, 200, 0); }
 }
