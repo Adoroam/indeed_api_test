@@ -3,7 +3,7 @@
 <head>
   <script src="bow/angular/angular.js"></script>
   <script src="bow/angular-cookies/angular-cookies.js"></script>
-  <!--<script type="text/javascript" src="http://gdc.indeed.com/ads/apiresults.js"></script>-->
+  <script type="text/javascript" src="http://gdc.indeed.com/ads/apiresults.js"></script>
   <link rel="stylesheet" href="style.css">
   <script src="all.min.js"></script>
   <base href="/">
@@ -13,25 +13,29 @@
 <body ng-controller="indexCtrl" ng-cloak>
 <!-- SEARCH -->
   <header role="search-box">
+  <dl>
+    <dd>
 <!-- JOB TITLE -->
-    <input type="text" 
-    ng-model="queryinfo.q" 
-    ng-keypress="enter($event)"
-    placeholder="Job Title">
+      <input type="text" 
+      ng-model="queryinfo.q" 
+      ng-keypress="enter($event)"
+      placeholder="Job Title">
+<!-- SEARCH BUTTON -->
+      <button type="button" 
+        ng-click="update('page')">Search Now</button>
+    </dd>
+    <dd>
 <!-- LOCATION -->
     <input type="text" 
     ng-model="queryinfo.l"
     ng-keypress="enter($event)"
     placeholder="Zip Code or City">
-    <div>
-<!-- SEARCH BUTTON -->
-      <button type="button" 
-        ng-click="update('page')">Search Now</button>
 <!-- ADVANCED SEARCH TOGGLE -->
       <button type="button" 
         ng-click="advtoggle()" 
         class="{{adv.color}}">Advanced Search</button>
-    </div>
+    </dd>
+  </dl>
 <!-- HIDDEN INPUTS -->
     <input type="text" 
       ng-model="queryinfo.start" 
@@ -42,27 +46,30 @@
       ng-change="update()"
       ng-show="false">
     <adv-search></adv-search>
-    <!-- {{queryinfo}} -->
   </header>
-
+<!-- PAGE CTRL #1 -->
   <page-controls></page-controls>
 <!-- RESULTS -->
-  <section role="results">
-    <a ng-repeat="x in xml.result track by x.date[0]" 
-      href="{{x.url[0]}}" 
-      >
-      <!-- ng-mousedown='conversion(this, x.onmousedown[0])' -->
+  <section role="results" ng-if="xml">
+    <a ng-repeat="x in xml.result" 
+      ng-mousedown='conversion()'
+      href="{{x.url[0]}}">
       <div class="result" >
         <h1>{{x.jobtitle[0]}}</h1>
         <h2>{{x.company[0]}} - {{x.formattedLocationFull[0]}}</h2>
         <p>{{x.snippet[0]}}</p>
         <div class="result-footer">
-          <p>via {{x.source[0]}} | posted {{x.date[0]}}</p>
+          <p>via {{x.source[0]}} | posted {{x.date[0]}} ({{x.formattedRelativeTime[0]}})</p>
         </div>
       </div>
      </a>
   </section>
 
+<!-- NO RESULTS SECTION -->
+  <section ng-show="!xml" ng-cloak>
+    <p>Sorry, no results to display...</p>
+  </section>
+<!-- PAGE CTRL #2 -->
   <page-controls></page-controls>
 <!-- ATTRIBUTION -->
   <footer role="attribution">

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <script src="bow/angular/angular.js"></script>
+  <script src="bow/angular-cookies/angular-cookies.js"></script>
+  <!--<script type="text/javascript" src="http://gdc.indeed.com/ads/apiresults.js"></script>-->
+  <link rel="stylesheet" href="style.css">
+  <script src="all.min.js"></script>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <title>admin login</title>
+</head>
+<body ng-controller="loginCtrl" ng-cloak>
+
+<div class="container"> 
+<!-- LOGIN BOX -->
+    <div role="login" ng-hide="isAdmin">
+        <h1>Log In</h1>
+        <form action="/admin" method="POST">
+            <dl>
+                <dd>
+                    <input type="text" 
+                    ng-model="login.username" 
+                    name="usr"
+                    placeholder="username">
+                </dd>
+                <dd>
+                    <input type="password" 
+                    ng-model="login.password" 
+                    name="pw"
+                    placeholder="password">
+                </dd>
+                <dd>
+                    <button type="submit">Make it rain!</button>
+                </dd>
+            </dl>
+        </form>
+    </div>
+<!-- DISPLAY DB INFO -->
+    <div role="dbinfo" ng-show="isAdmin">
+      <p class="adm-ctrl">
+        <label>Order by: 
+          <select ng-model="type">
+            <option value="userdate">date | time</option>
+            <option value="q">job title</option>
+            <option value="l">location</option>
+            <option value="userip">ip address</option>
+            <option value="useragent">user agent</option>
+          </select>
+          </label>
+          <label>reverse: 
+            <input type="checkbox" ng-model="reverse" ng-checked="reverse">
+          </label>
+          <button ng-click="limitToggle()">Toggle Page Limit</button>
+          
+          <a href="/logout" class="logout">log out</a>
+        </p>
+        <p class="center yellow" >
+          <button ng-click="prev()" class="left">Previous Page</button>
+          items {{(dblist | filter: search).length}} 
+          <button ng-click="next()" class="right">Next Page</button>
+        </p>
+        <!-- <input type="text" ng-model="search.$" placeholder="search - all"> -->
+
+      
+
+      <table>
+        <tr>
+          <th>query</th><th>location</th><th>user ip</th><th>user agent</th><th>date | time</th>
+        </tr>
+        <tr>
+          <td><input type="text" ng-model="search.q" placeholder="search"></td>
+          <td><input type="text" ng-model="search.l" placeholder="search"></td>
+          <td><input type="text" ng-model="search.userip" placeholder="search"></td>
+          <td><input type="text" ng-model="search.useragent" placeholder="search"></td>
+          <td><input type="text" ng-model="search.userdate" placeholder="search"></td>
+        </tr>
+        <tr ng-repeat="x in dblist | filter: search | orderBy : type : reverse | limitTo : limit : begin">
+          <td>{{x.q | decode}}</td>
+          <td>{{x.l | decode}}</td>
+          <td>{{x.userip}}</td>
+          <td class="ua">{{x.useragent}}</td>
+          <td>{{x.userdate | date: ' MM-dd-yyyy | hh:mm:ss'}}</td>
+          
+        </tr>
+      </table>
+    </div>
+</div>
+
+</body>
+</html>

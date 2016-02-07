@@ -108,16 +108,63 @@ app.controller('indexCtrl', ['$scope', '$cookies', '$location', 'ind', function(
     $scope.update('all');
 
 /* CONVERSION SCRIPT FOR ONMOUSEDOWN EVENT */
-   /* $scope.conversion = function(a, md) {
-        console.log(a.href);
+   $scope.conversion = function() {
+        var md = $scope.xml.result[0].onmousedown[0];
         var itemstart = md.indexOf("'")+1;
         var itemend = md.lastIndexOf("'");
-        var item = md.slice(itemstart, itemend);
-        indeed_clk(a, item);
-    }*/
+        var sig = md.slice(itemstart, itemend);
+        var hr = $location.url();
+        var si = hr.indexOf('&jsa=');
+        if (si > 0) return;
+        var jsh = hr + '&jsa=' + sig;
+        if (jsh.indexOf('&inchal') == -1) jsh += '&inchal=apiresults';
+        console.log(jsh);
+        $location.url(jsh);
+    }
 
 }]);
-
+/* LOGIN CTRL */
+app.controller('loginCtrl', ['$scope', '$cookies', 'dbservice', function($scope, $cookies, dbservice) {
+    $scope.login = {
+        username: '',
+        password: '',
+    };
+/* CHECK FOR ADMIN COOKIE*/
+    $scope.isAdmin = $cookies.get('admin');
+    if ($scope.isAdmin) {
+/* RUN SERVICE TO GET DB INFO */
+        dbservice.get().then(function(d) {
+            $scope.dblist = d.data;  
+            $scope.total = $scope.dblist.length;
+         });
+/* SET INIT REVERS DIRECTION FOR RESULTS*/
+        $scope.reverse = false;
+        $scope.type = "userdate";
+        $scope.limit = undefined;
+        $scope.begin = 0;
+        $scope.prev = function() {
+            if ($scope.begin >= 10) {
+                $scope.begin -= 10;
+            }  
+        };
+        $scope.next = function() {
+            var total = $scope.total;
+            if ($scope.begin < total) {
+                $scope.begin += 10;
+            } 
+        };
+        $scope.showall = false;
+        $scope.limitToggle = function(){
+            if ($scope.limit == undefined) {
+                $scope.limit = 10;
+                $scope.showall = true;
+            }   else {
+                $scope.limit = undefined;
+                $scope.showall = false;
+            }
+        };
+    };
+}]);
 /* SERVICE FOR HTTP GET REQUEST TO API */
 app.factory('ind', function($http, $location) {
     //function to turn parsed query info into useable string
@@ -150,6 +197,36 @@ app.factory('ind', function($http, $location) {
     };
     return jsondata;
 });
+/* GET DB RESULTS FOR ADMIN */
+app.factory('dbservice', function($http, $cookies) {
+    var isAdmin = $cookies.get('admin');
+    if (isAdmin) {
+        //actual http request
+        var promise;
+        var jsondata = {
+            get: function() {
+                if (!promise) {
+                    var promise = $http.post('/admininfo').success(function(response) {
+                        return response;
+                    });
+                    return promise;
+                }
+            }
+        };
+        console.log("getting json");
+        return jsondata;
+    } //end if isAdmin
+    else {
+        var test = {
+            get: function() {
+                var well = "uh oh";
+                return well;
+            }
+        }
+        console.log(test);
+        return test;
+    }
+});
 
 /* DIRECTIVES */
 app.directive('pageControls', function() {
@@ -165,4 +242,11 @@ app.directive('advSearch', function() {
         transclude: true,
         templateUrl: 'templates/advsearch.html'
     }
+});
+
+app.filter('decode', function() {
+    return function(input) {
+        var decoded = decodeURI(input);
+        return decoded;
+    };
 });

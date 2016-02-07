@@ -41,12 +41,37 @@ var Ind = mongoose.model('Ind', indSchema);
 app.post('/', function(req, res) {
     res.redirect('/');            
 });
-app.get('/admin', function(req, res) {
-    res.redirect('/login.html');            
-});
 
 app.get('/', function(req, res) {
     res.redirect('/');            
+});
+/* ADMIN */
+app.get('/admin', function(req, res) {
+    res.redirect('/login.html'); 
+});
+app.post('/admin', function(req, res) {
+    var usr = req.body.usr;
+    var pw = req.body.pw;
+    if (usr === "the one" && pw === "neo") {
+        res.cookie('admin', true);
+    }
+    res.redirect('/login.html');
+});
+app.post('/admininfo', function(req, res) {
+
+    Ind.find(function(err, queryies) {
+        var querylist = [];
+        for (x in queryies) {
+            querylist.push(queryies[x]);
+        };
+        //fs.writeFile('userlist.json', JSON.stringify(userlist));
+        res.json(querylist);            
+    });
+
+});
+app.get('/logout', function(req, res) {
+    res.clearCookie('admin');
+    res.redirect('/login.html'); 
 });
 
 app.get('/data', function(req, res) {
@@ -59,14 +84,19 @@ app.get('/data', function(req, res) {
         qobj[str[0]] = str[1];
     };
     var userip = req.ip;
+    qobj.userip = userip;
     var useragent = req.headers['user-agent'];
+    qobj.useragent = useragent;
     qobj.userdate = Date();
+     for (x in qobj) {
+        qobj[x] =  decodeURI(qobj[x]);
+    }
     var newRequest = new Ind({
         q: qobj.q,
         l:qobj.l,
         start: qobj.start,
-        userip: userip,
-        useragent: useragent,
+        userip: qobj.userip,
+        useragent: qobj.useragent,
         userdate: qobj.userdate
     });
     if (qobj.q && qobj.l && qobj.q != undefined) {
@@ -76,10 +106,10 @@ app.get('/data', function(req, res) {
             console.log('saved as:' + newRequest);
         });
     };
-    qobj.q = encodeURI(qobj.q);
-    qobj.l = encodeURI(qobj.l);
-    qobj.userip = encodeURI(qobj.userip);
-    qobj.useragent = encodeURI(useragent);
+    for (x in qobj) {
+        qobj[x] =  encodeURI(qobj[x]);
+    }
+    
     //console.log(qobj);
     if (!qobj.limit || qobj.limit == "0" || qobj.limit == undefined) {
         qobj.limit = "20";

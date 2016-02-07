@@ -28,7 +28,6 @@ html {
 }
 body {
     box-sizing: border-box;
-    
     padding: 0em;
     margin: 0em;
     display: flex;
@@ -147,11 +146,14 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
     text-align: center;
 }
-input, button {
+input, button, select {
     padding: 0.3em;
     background-color: $dark;
     color: $white;
     border: 1px solid $pink;
+}
+button {
+    width: 10em;
 }
 .center {text-align: center;}
 .ital {font-style: italic;}
@@ -183,4 +185,72 @@ input, button {
     0% {background-color: rgba(200, 200, 200, 0); }
     50% {background-color: rgba(200, 200, 200, 0.1); }
     100% {background-color: rgba(200, 200, 200, 0); }
+}
+/* ADMIN */
+body[ng-controller="loginCtrl"] {
+    height: 100%;
+    .container {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-content: center;
+        margin: 0 auto;
+        div {
+            margin: auto 0;
+            .adm-ctrl {
+                padding: 0;
+                .logout {
+                    float: right;
+                }
+            }
+            h1 {
+                cursor: default;
+                text-align: center;
+                &:hover {
+                    animation: heading 4s;
+                    animation-fill-mode: forwards; 
+                }
+            }
+            table {
+                width: 100%;
+                tr {
+                    
+                    th {
+                        color:$blue;
+                    }
+                    td {
+                        width: 10em;
+                        color:$white;
+                    }
+                    .ua {
+                        font-size: 10px;
+                    }
+                }
+            }
+            dl dd {
+                margin: 0;
+                width: 100%;
+                input {text-align: center;}
+                button{
+                    width:100%;
+                    border: 1px solid $yellow;
+                    color: $yellow;
+                    margin-top: 1em;
+                    &:hover {
+                        background-color: $yellow;
+                        color: $dark;
+                    }
+                }
+                
+            }
+        }
+    }
+}
+.left {
+    float: left;
+}
+.right {
+    float: right;
 }

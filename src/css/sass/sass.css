@@ -134,11 +134,14 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   text-align: center; }
 
-input, button {
+input, button, select {
   padding: 0.3em;
   background-color: #272822;
   color: #f8f8f2;
   border: 1px solid #f92672; }
+
+button {
+  width: 10em; }
 
 .center {
   text-align: center; }
@@ -176,3 +179,55 @@ input, button {
     background-color: rgba(200, 200, 200, 0.1); }
   100% {
     background-color: rgba(200, 200, 200, 0); } }
+
+/* ADMIN */
+body[ng-controller="loginCtrl"] {
+  height: 100%; }
+  body[ng-controller="loginCtrl"] .container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    margin: 0 auto; }
+    body[ng-controller="loginCtrl"] .container div {
+      margin: auto 0; }
+      body[ng-controller="loginCtrl"] .container div .adm-ctrl {
+        padding: 0; }
+        body[ng-controller="loginCtrl"] .container div .adm-ctrl .logout {
+          float: right; }
+      body[ng-controller="loginCtrl"] .container div h1 {
+        cursor: default;
+        text-align: center; }
+        body[ng-controller="loginCtrl"] .container div h1:hover {
+          animation: heading 4s;
+          animation-fill-mode: forwards; }
+      body[ng-controller="loginCtrl"] .container div table {
+        width: 100%; }
+        body[ng-controller="loginCtrl"] .container div table tr th {
+          color: #66d9ef; }
+        body[ng-controller="loginCtrl"] .container div table tr td {
+          width: 10em;
+          color: #f8f8f2; }
+        body[ng-controller="loginCtrl"] .container div table tr .ua {
+          font-size: 10px; }
+      body[ng-controller="loginCtrl"] .container div dl dd {
+        margin: 0;
+        width: 100%; }
+        body[ng-controller="loginCtrl"] .container div dl dd input {
+          text-align: center; }
+        body[ng-controller="loginCtrl"] .container div dl dd button {
+          width: 100%;
+          border: 1px solid #e6db74;
+          color: #e6db74;
+          margin-top: 1em; }
+          body[ng-controller="loginCtrl"] .container div dl dd button:hover {
+            background-color: #e6db74;
+            color: #272822; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
