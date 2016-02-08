@@ -11,6 +11,7 @@
   <title>indeed api test</title>
 </head>
 <body ng-controller="indexCtrl" ng-cloak>
+<tracking></tracking>
 <!-- SEARCH -->
   <header role="search-box">
   <dl>
@@ -64,7 +65,6 @@
       </div>
      </a>
   </section>
-
 <!-- NO RESULTS SECTION -->
   <section ng-show="!xml" ng-cloak>
     <p>Sorry, no results to display...</p>
@@ -80,27 +80,5 @@
       vertical-align: middle;" alt="Indeed job search"></a>
     </span>
   </footer>
-      <!-- <dl>
-        <dd >jobtitle: {{x.jobtitle[0]}}</dd>
-        <dd>company: {{x.company[0]}}</dd>
-        <dd>city: {{x.city[0]}}</dd>
-        <dd>state: {{x.state[0]}}</dd>
-        <dd>country: {{x.country[0]}}</dd>
-        <dd>formattedLocation: {{x.formattedLocation[0]}}</dd>
-        <dd>source: {{x.source[0]}}</dd>
-        <dd>date: {{x.date[0]}}</dd>
-        <dd>snippet: {{x.snippet[0]}}</dd>
-        <dd>url: <a href="{{x.url[0]}}">{{x.url[0]}}</a></dd>
-        <dd>onmousedown: {{x.onmousedown[0]}}</dd>
-        <dd>latitude: {{x.latitude[0]}}</dd>
-        <dd>longitude: {{x.longitude[0]}}</dd>
-        <dd>jobkey: {{x.jobkey[0]}}</dd>
-        <dd>sponsored: {{x.sponsored[0]}}</dd>
-        <dd>expired: {{x.expired[0]}}</dd>
-        <dd>indeedApply: {{x.indeedApply[0]}}</dd>
-        <dd>formattedLocationFull: {{x.formattedLocationFull[0]}}</dd>
-        <dd>formattedRelativeTime: {{x.formattedRelativeTime[0]}}</dd>
-        <dd>noUniqueUrl: {{x.noUniqueUrl[0]}}</dd>
-      </dl> -->
 </body>
 </html>

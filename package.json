@@ -1,5 +1,5 @@
 {
-  "name": "anthonystabile.io",
+  "name": "indeedapi-exam",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -12,7 +12,6 @@
     "body-parser": "^1.14.2",
     "bower": "^1.7.2",
     "cookie-parser": "^1.4.1",
-    "cors": "^2.7.1",
     "express": "^4.13.3",
     "fs": "0.0.2",
     "gulp": "^3.9.0",

@@ -52,7 +52,7 @@
             <input type="checkbox" ng-model="reverse" ng-checked="reverse">
           </label>
           <button ng-click="limitToggle()">Toggle Page Limit</button>
-          
+          <button ng-click="trackingToggle()">Add Tracking HTML</button>
           <a href="/logout" class="logout">log out</a>
         </p>
         <p class="center yellow" >
@@ -60,9 +60,12 @@
           items {{(dblist | filter: search).length}} 
           <button ng-click="next()" class="right">Next Page</button>
         </p>
-        <!-- <input type="text" ng-model="search.$" placeholder="search - all"> -->
-
-      
+        <div ng-show="tracking">
+          <form action="/tracking" method="POST">
+            <input type="text" id="tracking-text" name="tracking">
+            <button type="submit">Submit Tracking HTML</button>
+          </form>
+        </div>
 
       <table>
         <tr>
@@ -81,7 +84,6 @@
           <td>{{x.userip}}</td>
           <td class="ua">{{x.useragent}}</td>
           <td>{{x.userdate | date: ' MM-dd-yyyy | hh:mm:ss'}}</td>
-          
         </tr>
       </table>
     </div>

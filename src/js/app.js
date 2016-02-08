@@ -8,6 +8,7 @@ app.config(['$locationProvider', function($locationProvider) {
 
 /* CONTROLLER FOR INDEX */
 app.controller('indexCtrl', ['$scope', '$cookies', '$location', 'ind', function($scope, $cookies, $location, ind) {
+
 /* BUILD QUERYINFO FROM URL*/
     $scope.queryinfo = $location.search();
 
@@ -29,7 +30,8 @@ app.controller('indexCtrl', ['$scope', '$cookies', '$location', 'ind', function(
         }
         //update url query with queryinfo
         $location.search($scope.queryinfo);
-    /* CALL TO HTTP GET SERVICE */
+
+/* CALL TO HTTP GET SERVICE */
         ind.get().then(function(d) {
             if (d.data) {
                 //bind the usable data to xml
@@ -38,18 +40,6 @@ app.controller('indexCtrl', ['$scope', '$cookies', '$location', 'ind', function(
                 if (typeof $scope.xml == 'string') {
                     $scope.xml = false;
                 };
-                //drop limit to match the maximum reults
-                /*if ($scope.xml) {
-                    var total = Number($scope.xmltotal);
-                    var limit = Number($scope.queryinfo.limit);
-                    if (total < limit) {
-                        $scope.queryinfo.limit = total.toString();
-
-                    }   else {
-                        $scope.queryinfo.limit = "20";
-                    }
-                }*/
-
             }   else {console.log("nodata");}
         });
     };
@@ -57,6 +47,7 @@ app.controller('indexCtrl', ['$scope', '$cookies', '$location', 'ind', function(
         $scope.queryinfo.start = "0";
         $scope.queryinfo.limit = "20";
     }
+
 /* ADVANCED SEARCH */
     $scope.adv = {
         tog: false,
@@ -71,12 +62,14 @@ app.controller('indexCtrl', ['$scope', '$cookies', '$location', 'ind', function(
             $scope.adv.color = 'purple';
         }
     };
+
 /* ENTER KEY TRIGGER */
     $scope.enter = function(event) {
         if (event.keyCode == 13) {
             $scope.update('page');
         };
     };
+
 /* PAGE CONTROLS */
     $scope.controls = function(direction) {
         var qs = $scope.queryinfo.start;
@@ -104,6 +97,7 @@ app.controller('indexCtrl', ['$scope', '$cookies', '$location', 'ind', function(
         $scope.queryinfo.start = qs.toString();
         $scope.update();
     };
+    
 /* INIT UPDATE RUN */    
     $scope.update('all');
 
@@ -161,6 +155,14 @@ app.controller('loginCtrl', ['$scope', '$cookies', 'dbservice', function($scope,
             }   else {
                 $scope.limit = undefined;
                 $scope.showall = false;
+            }
+        };
+        $scope.tracking = false;
+        $scope.trackingToggle = function(){
+            if ($scope.tracking) {
+                $scope.tracking = false;
+            }   else {
+                $scope.tracking = true;
             }
         };
     };
@@ -241,6 +243,13 @@ app.directive('advSearch', function() {
         restrict: 'E',
         transclude: true,
         templateUrl: 'templates/advsearch.html'
+    }
+});
+app.directive('tracking', function() {
+    return {
+        restrict: 'E',
+        transclude: true,
+        templateUrl: 'templates/tracking.html'
     }
 });
 

@@ -1,7 +1,6 @@
 var http = require('http');
 var url = require('url');
 var express = require('express');
-  //, cors = require('cors')
 var app = express();
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
@@ -10,10 +9,6 @@ var parseString = require('xml2js').parseString;
 var fs = require('fs');
 var port = 80; 
 
-/*var corsOptions = {
-    origin: true
-};
-app.use(cors(corsOptions));*/
 app.use(cookieParser());
 app.use(express.static("dist"));
 app.use(bodyParser.urlencoded({ extended:false }));
@@ -45,6 +40,16 @@ app.post('/', function(req, res) {
 app.get('/', function(req, res) {
     res.redirect('/');            
 });
+/* TRACKING */
+app.post('/tracking', function(req, res) {
+    var base = process.env.PWD;
+    var trackingdata = req.body.tracking;
+    fs.appendFile(base+'/dist/templates/tracking.html', trackingdata, (err) => {
+      if (err) throw err;
+      console.log(trackingdata+' was appended to file!');
+    });
+    res.redirect('/login.html'); 
+});
 /* ADMIN */
 app.get('/admin', function(req, res) {
     res.redirect('/login.html'); 
@@ -64,7 +69,6 @@ app.post('/admininfo', function(req, res) {
         for (x in queryies) {
             querylist.push(queryies[x]);
         };
-        //fs.writeFile('userlist.json', JSON.stringify(userlist));
         res.json(querylist);            
     });
 
@@ -110,7 +114,6 @@ app.get('/data', function(req, res) {
         qobj[x] =  encodeURI(qobj[x]);
     }
     
-    //console.log(qobj);
     if (!qobj.limit || qobj.limit == "0" || qobj.limit == undefined) {
         qobj.limit = "20";
     }
@@ -141,7 +144,6 @@ app.get('/data', function(req, res) {
         resp.on('end', function() {
             parseString(xml, function(err, result) {
                 //this returns just the results if needed
-                //res.json(result.response.results[0]);
                 res.json(result.response);
             });
         });

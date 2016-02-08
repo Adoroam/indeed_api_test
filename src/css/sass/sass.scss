@@ -1,5 +1,4 @@
 $font-stack: Helvetica, sans-serif;
-
 $dark: #272822;
 $light: #8f908a;
 $yellow: #e6db74;
@@ -39,9 +38,6 @@ a {
     color: $white;
     text-decoration: none;
     box-sizing: border-box;
-    &:hover {
-        
-    }
 }
 input[type="radio"]:checked+label {
     color: $blue;
@@ -54,8 +50,6 @@ label {
         animation: links 1s;
         animation-fill-mode: forwards; 
     }
-}
-form {
 }
 header, section, footer {
     box-sizing: border-box;
@@ -76,8 +70,6 @@ div[role="adv-search"] {
         tr th {
             width: 9em;
             color: $green;
-        }
-        tr td {
         }
     }
 }
@@ -114,9 +106,6 @@ section[role="page-controls"] {
     p {
         margin: auto 0;
         text-align: center;
-    }
-    [role="prev"] {
-        
     }
     [role="next"] {
         float: right;
@@ -158,34 +147,7 @@ button {
 .center {text-align: center;}
 .ital {font-style: italic;}
 
-@media only screen and (max-width: 720px) {
-    section {
-        display:block;
-    }
-}
-@mixin border-radius($radius) {
-    -webkit-border-radius: $radius;
-    -moz-border-radius: $radius;
-    -ms-border-radius: $radius;
-    border-radius: $radius;
-}
 
-@keyframes links {
-    0% {color: $white;}
-    100% {color: $purple;border-bottom: 2px dotted $yellow;}
-}
-@keyframes heading {
-    0% {color: $blue;}
-    25% {color: $purple;}
-    50% {color: $pink;}
-    75% {color: $yellow;}
-    100% {color: $green;}
-}
-@keyframes focus {
-    0% {background-color: rgba(200, 200, 200, 0); }
-    50% {background-color: rgba(200, 200, 200, 0.1); }
-    100% {background-color: rgba(200, 200, 200, 0); }
-}
 /* ADMIN */
 body[ng-controller="loginCtrl"] {
     height: 100%;
@@ -253,4 +215,35 @@ body[ng-controller="loginCtrl"] {
 }
 .right {
     float: right;
+}
+ #tracking-text {
+    width: 500px;
+    height: 300px;
+}
+@keyframes links {
+    0% {color: $white;}
+    100% {color: $purple;border-bottom: 2px dotted $yellow;}
+}
+@keyframes heading {
+    0% {color: $blue;}
+    25% {color: $purple;}
+    50% {color: $pink;}
+    75% {color: $yellow;}
+    100% {color: $green;}
+}
+@keyframes focus {
+    0% {background-color: rgba(200, 200, 200, 0); }
+    50% {background-color: rgba(200, 200, 200, 0.1); }
+    100% {background-color: rgba(200, 200, 200, 0); }
+}
+@media only screen and (max-width: 720px) {
+    section {
+        display:block;
+    }
+}
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
 }

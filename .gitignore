@@ -1,2 +1,4 @@
 node_modules
 dist/bow
+dist/style.css
+dist/all.min.js
