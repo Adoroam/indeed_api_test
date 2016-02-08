@@ -149,37 +149,6 @@ button {
 .ital {
   font-style: italic; }
 
-@media only screen and (max-width: 720px) {
-  section {
-    display: block; } }
-
-@keyframes links {
-  0% {
-    color: #f8f8f2; }
-  100% {
-    color: #ae81ff;
-    border-bottom: 2px dotted #e6db74; } }
-
-@keyframes heading {
-  0% {
-    color: #66d9ef; }
-  25% {
-    color: #ae81ff; }
-  50% {
-    color: #f92672; }
-  75% {
-    color: #e6db74; }
-  100% {
-    color: #a6e22e; } }
-
-@keyframes focus {
-  0% {
-    background-color: rgba(200, 200, 200, 0); }
-  50% {
-    background-color: rgba(200, 200, 200, 0.1); }
-  100% {
-    background-color: rgba(200, 200, 200, 0); } }
-
 /* ADMIN */
 body[ng-controller="loginCtrl"] {
   height: 100%; }
@@ -235,3 +204,34 @@ body[ng-controller="loginCtrl"] {
 #tracking-text {
   width: 500px;
   height: 300px; }
+
+@keyframes links {
+  0% {
+    color: #f8f8f2; }
+  100% {
+    color: #ae81ff;
+    border-bottom: 2px dotted #e6db74; } }
+
+@keyframes heading {
+  0% {
+    color: #66d9ef; }
+  25% {
+    color: #ae81ff; }
+  50% {
+    color: #f92672; }
+  75% {
+    color: #e6db74; }
+  100% {
+    color: #a6e22e; } }
+
+@keyframes focus {
+  0% {
+    background-color: rgba(200, 200, 200, 0); }
+  50% {
+    background-color: rgba(200, 200, 200, 0.1); }
+  100% {
+    background-color: rgba(200, 200, 200, 0); } }
+
+@media only screen and (max-width: 720px) {
+  section {
+    display: block; } }

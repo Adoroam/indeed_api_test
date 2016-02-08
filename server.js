@@ -44,9 +44,9 @@ app.get('/', function(req, res) {
 app.post('/tracking', function(req, res) {
     var base = process.env.PWD;
     var trackingdata = req.body.tracking;
-    fs.appendFile(base+'/dist/templates/tracking.html', trackingdata, (err) => {
-      if (err) throw err;
-      console.log(trackingdata+' was appended to file!');
+    fs.appendFile(base+'/dist/templates/tracking.html', trackingdata, function (err) {
+        if (err) throw err;
+        console.log(trackingdata+' was appended to file!');
     });
     res.redirect('/login.html'); 
 });
